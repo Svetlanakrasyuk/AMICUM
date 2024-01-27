@@ -10,6 +10,8 @@ def json_to_tuple(d, result_tuple):
     for i in d:
         # Если в словаре есть ключ children то передаем значения ключа функции рекусивно
         if 'children' in i:
+            if i.get('title', False) and i.get('id', False):
+                result_tuple.append((i['title'], i['id']))
             json_to_tuple(i['children'], result_tuple)
         else:
             # Добавляем данные в список
